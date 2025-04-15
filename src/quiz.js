@@ -25,10 +25,33 @@ class Quiz {
   }
 
   checkAnswer(answer) {
-    this.correctAnswers++;
+    const question = this.getQuestion();
+    const isCorrectAnswer = question.answer === answer;
+    if (isCorrectAnswer) {
+      this.correctAnswers++;
+    }
   }
 
   hasEnded() {
     return this.currentQuestionIndex === this.questions.length;
+  }
+
+  filterQuestionsByDifficulty(difficulty) {
+    if (difficulty <= 3 && difficulty >= 1) {
+      this.questions = this.questions.filter(function (question) {
+        if (question.difficulty === difficulty) return question.difficulty;
+      });
+    }
+  }
+
+  averageDifficulty() {
+    const sumOfDifficulty = this.questions.reduce(function (
+      subtotal,
+      question
+    ) {
+      return subtotal + question.difficulty;
+    },
+    0);
+    return sumOfDifficulty / this.questions.length;
   }
 }
