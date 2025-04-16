@@ -28,7 +28,7 @@ class Quiz {
     const question = this.getQuestion();
     const isCorrectAnswer = question.answer === answer;
     if (isCorrectAnswer) {
-      this.correctAnswers++;
+      ++this.correctAnswers;
     }
   }
 
